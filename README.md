@@ -10,7 +10,13 @@
      - 标题：heading
      - 段落（正文）：paragraph
      - 表格：list
-  **token分割**：将通过语义分割后的块列表计算token，若小于max_token则将合并一起
+  **token分割**：对语义分割后的块列表通过embedding模型计算token，若小于max_token则将合并一起
 
 3. 逐块优化
    将以上分割后的块列表，根据其所属类型对每块文档进行优化
+
+### embedding 模型
+  默认选择本地 embedding 模型 ./Qwen2.5-7B
+
+### llm 
+  代码中默认通过Ollama的api访问使用 qwen2.5:14b 
