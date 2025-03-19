@@ -21,22 +21,22 @@ def optimize_ocr_document(
     # 预处理OCR错误
     processed_content = preprocess_md.preprocess_md(ocr_content)
     
-    # # 分块处理（语义+Token分割）
-    # chunks = split_document.split_document(
-    #     text=processed_content,
-    #     max_tokens=max_tokens,
-    #     embedding_model=embedding_name,
-    # )
+    # 分块处理（语义+Token分割）
+    chunks = split_document.split_document(
+        text=processed_content,
+        max_tokens=max_tokens,
+        embedding_model=embedding_name,
+    )
     
-    # # 逐块优化（带上下文传递）
-    # optimized_chunks = optimize_chunk_with_context.optimize_chunk_with_context(
-    #     chunks=chunks,
-    #     model_name=model_name
-    # )
+    # 逐块优化（带上下文传递）
+    optimized_chunks = optimize_chunk_with_context.optimize_chunk_with_context(
+        chunks=chunks,
+        model_name=model_name
+    )
     
     # 合并结果并保存覆盖原本文件
     with open(output_path, "w", encoding="utf-8") as f:
-        f.write(processed_content)
+        f.write(optimized_chunks)
 
     logging.info(f"OCR文档优化完成\n结果已保存至：{output_path}")
 
